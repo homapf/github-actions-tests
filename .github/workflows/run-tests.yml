@@ -20,6 +20,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: Library
+          key: Library
 
       - name: Running tests
         uses: game-ci/unity-test-runner@v2
