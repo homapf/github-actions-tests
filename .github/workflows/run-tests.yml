@@ -1,0 +1,9 @@
+- name: Checkout unity empty project
+  uses: actions/checkout@v3
+  with:
+    repository: homapf/unity-empty-project
+
+- name: Checkout package
+  uses: actions/checkout@v3
+  with:
+    path: Packages
