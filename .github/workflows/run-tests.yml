@@ -17,6 +17,10 @@ jobs:
         with:
           path: Packages/my-awesome-package
 
+      - uses: actions/cache@v2
+        with:
+          path: Library
+
       - name: Running tests
         uses: game-ci/unity-test-runner@v2
         id: tests
