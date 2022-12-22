@@ -14,7 +14,7 @@ jobs:
       - name: Checkout package
         uses: actions/checkout@v3
         with:
-          path: unity-empty-project/Packages/my-awesome-package
+          path: Packages/my-awesome-package
 
       - name: Running tests
         uses: game-ci/unity-test-runner@v2
