@@ -1,10 +1,12 @@
-name: Test package
+name: Release package
 
-on: [pull_request]
+on:
+  release:
+    types: [published]
 
 jobs:
-  tests:
-    name: Testing package
+  push-to-homa-belly:
+    name: Create project
     runs-on: ubuntu-latest
     steps:
       - name: Checkout unity empty project
