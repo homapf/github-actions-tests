@@ -29,6 +29,7 @@ jobs:
           buildMethod: Build.CreateAllEmbeddedUnityPackages
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           allowDirtyBuild: true
+          versioning: None
 
       - name: Upload .unitypackage to release
         uses: svenstaro/upload-release-action@v2
