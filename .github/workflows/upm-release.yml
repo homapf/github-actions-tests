@@ -1,0 +1,16 @@
+name: Release package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push-to-artifactory:
+    name: Push to UPM Repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: |
+          echo "${ARTIFACTORY_NPMRC}"  > ~/.npmrc
+          npm publish --registry ${ARTIFACTORY_REPOSITORY}
