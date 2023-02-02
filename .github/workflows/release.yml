@@ -1,0 +1,15 @@
+name: Release package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  tests:
+    uses: homapf/shared-workflows/.github/workflows/run-tests.yml@main
+  github-release:
+    uses: homapf/shared-workflows/.github/workflows/github-release.yml@main
+    needs: tests
+  upm-release:
+    uses: homapf/shared-workflows/.github/workflows/upm-release.yml@main
+    needs: tests
