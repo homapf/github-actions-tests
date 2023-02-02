@@ -12,5 +12,5 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: |
-          echo ${{secrets.ARTIFACTORY_NPMRC}}  > ~/.npmrc
-          npm publish --registry ${secrets.ARTIFACTORY_REPOSITORY}
+          echo "${{secrets.ARTIFACTORY_NPMRC}}""  > ~/.npmrc
+          npm publish --registry ${{secrets.ARTIFACTORY_REPOSITORY}}
