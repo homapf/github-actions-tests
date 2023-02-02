@@ -13,4 +13,4 @@ jobs:
       - uses: actions/setup-node@v3
       - run: |
           echo "${ARTIFACTORY_NPMRC}"  > ~/.npmrc
-          npm publish --registry ${ARTIFACTORY_REPOSITORY}
+          npm publish --registry ${{ARTIFACTORY_REPOSITORY}}
