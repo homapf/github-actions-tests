@@ -10,9 +10,9 @@ jobs:
     secrets: inherit
   github-release:
     uses: homapf/shared-workflows/.github/workflows/github-release.yml@main
-    needs: tests
     secrets: inherit
+    needs: tests
   upm-release:
     uses: homapf/shared-workflows/.github/workflows/upm-release.yml@main
-    needs: tests
     secrets: inherit
+    needs: tests
