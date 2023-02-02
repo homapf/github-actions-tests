@@ -6,6 +6,6 @@ public static class MyAwesomeScript
 {
     public static bool IsEven(int number)
     {
-        return number % 2 == 0;
+        return number % 3 == 0;
     }
 }
