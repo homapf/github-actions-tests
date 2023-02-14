@@ -38,7 +38,7 @@ jobs:
       - name: Push to aws
         uses: keithweaver/aws-s3-github-action@v1.0.0
         with:
-          command: cp
+          command: sync
           source: Build/com.homa.myawesomepackage/
           destination: ${{ secrets.AWS_BUCKET_URI }}
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
