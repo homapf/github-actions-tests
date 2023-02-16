@@ -8,11 +8,18 @@ jobs:
   tests:
     uses: homapf/shared-workflows/.github/workflows/run-tests.yml@main
     secrets: inherit
+  build-package:
+    uses: homapf/shared-workflows/.github/workflows/build-package.yml@main
+    with:
+      build-method: "Build.CreateAllEmbeddedUnityPackages"
+      bare-repository: true
+    secrets: inherit
+    needs: tests
   github-release:
     uses: homapf/shared-workflows/.github/workflows/github-release.yml@main
     secrets: inherit
-    needs: tests
+    needs: build-package
   upm-release:
     uses: homapf/shared-workflows/.github/workflows/upm-release.yml@main
     secrets: inherit
-    needs: tests
+    needs: build-package
