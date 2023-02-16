@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    uses: homapf/shared-workflows/.github/workflows/build-package.yml@master
+    uses: homapf/shared-workflows/.github/workflows/build-package.yml@main
     with:
       build-method: "Build.CreateAllEmbeddedUnityPackages"
       bare-repository: true
