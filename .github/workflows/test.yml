@@ -1,6 +1,6 @@
-name: Test package
+name: Test package again
 
-on: [push]
+on: [workflow_dispatch]
 
 jobs:
   tests:
