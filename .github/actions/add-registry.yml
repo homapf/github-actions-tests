@@ -1,0 +1,15 @@
+name: "Add UPM Registry"
+description: "Add a scoped registry to the manifest.json of a Unity project."
+inputs:
+  registry-name:
+    required: true
+  registry-url:
+    required: true
+  registry-scope:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: add-upm-registry.sh ${{registry-name}} ${{registry-url}} ${{registry-scope}}
+      shell: bash

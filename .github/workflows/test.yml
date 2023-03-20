@@ -1,8 +1,13 @@
 name: Test package
 
-on: [pull_request]
+on: [push]
 
 jobs:
   tests:
-    uses: homapf/shared-workflows/.github/workflows/run-tests.yml@main
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: homapf/github-actions-tests/.github/actions/add-registry.yml@main
+        with:
+          registry-url: "some-url"
+          registry-name: "some-name"
+          registry-scope: "some-scope"
