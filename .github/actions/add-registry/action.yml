@@ -16,5 +16,5 @@ runs:
   steps:
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
-    - run: add-upm-registry.sh
+    - run: add-upm-registry.sh ${{inputs.registry-name}} ${{inputs.registry-url}} ${{inputs.registry-scope}}
       shell: bash
