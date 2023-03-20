@@ -6,6 +6,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Unity empty project
+        uses: actions/checkout@v3
       - uses: homapf/github-actions-tests/.github/actions/add-registry.yml@main
         with:
           registry-url: "some-url"
