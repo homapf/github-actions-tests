@@ -1,4 +1,4 @@
-name: Test package again
+name: Test package
 
 on: [push]
 
