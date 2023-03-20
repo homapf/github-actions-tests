@@ -2,10 +2,13 @@ name: "Add UPM Registry"
 description: "Add a scoped registry to the manifest.json of a Unity project."
 inputs:
   registry-name:
+    description: "UPM registry name"
     required: true
   registry-url:
+    description: "UPM registry url"
     required: true
   registry-scope:
+    description: "UPM registry scope"
     required: true
 
 runs:
