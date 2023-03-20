@@ -14,5 +14,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: add-upm-registry.sh ${{registry-name}} ${{registry-url}} ${{registry-scope}}
+    - run: add-upm-registry.sh ${{inputs.registry-name}} ${{inputs.registry-url}} ${{inputs.registry-scope}}
       shell: bash
