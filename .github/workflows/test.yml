@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Checkout Unity empty project
         uses: actions/checkout@v3
-      - uses: actions/add-registry.yml@main
+      - uses: ./.github/actions/add-registry.yml
         with:
           registry-url: "some-url"
           registry-name: "some-name"
