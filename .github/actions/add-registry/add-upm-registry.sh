@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Define the registry details
 name=$1
 url=$2
