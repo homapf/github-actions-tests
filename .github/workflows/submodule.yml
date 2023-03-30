@@ -10,4 +10,4 @@ jobs:
       - name: Sync submodule
         run: |
           git subtree split --prefix "Packages/" -b submodule
-          git push origin submodule
+          git push --force origin submodule
