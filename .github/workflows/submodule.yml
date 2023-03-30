@@ -11,4 +11,8 @@ jobs:
           ssh-key: ${{secrets.SSH}}
       - name: Sync submodule
         run: |
-          git subtree push --prefix="Packages/" "https://github.com/homapf/github-actions-tests.git" submodule
+          git remote rm origin
+          git remote add origin "https://github.com/homapf/github-actions-tests.git"
+          git config --global user.name "Admin"
+          git config --global user.email "pf@homagames.com"
+          git subtree push --prefix="Packages/" origin submodule
