@@ -6,9 +6,10 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Sync submodule
         run: |
-          git fetch origin develop
-          git checkout develop
+          git fetch origin submodule
+          git checkout main
           git subtree split --prefix "Packages/" -b submodule
           git push origin submodule
