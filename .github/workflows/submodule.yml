@@ -11,5 +11,4 @@ jobs:
           fetch-depth: 0
       - name: Sync submodule
         run: |
-          git subtree split -P "Packages/" -b submodule
-          git push origin submodule --force
+          git subtree push --prefix="Packages/" origin submodule
