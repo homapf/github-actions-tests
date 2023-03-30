@@ -1,0 +1,12 @@
+name: Test package
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Sync submodule
+        run: |
+          git subtree push --prefix="Packages/" origin submodule-core
