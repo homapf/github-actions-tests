@@ -10,6 +10,5 @@ jobs:
       - name: Sync submodule
         run: |
           git fetch origin submodule
-          git checkout main
-          git subtree split --prefix "Packages/" -b submodule
-          git push origin submodule
+          git checkout submodule
+          git subtree pull --prefix="Packages/" origin
