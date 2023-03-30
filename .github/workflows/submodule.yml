@@ -11,4 +11,4 @@ jobs:
           ssh-key: ${{secrets.SSH}}
       - name: Sync submodule
         run: |
-          git subtree push --prefix="Packages/" origin submodule
+          git subtree push --prefix="Packages/" "https://github.com/homapf/github-actions-tests.git" submodule
