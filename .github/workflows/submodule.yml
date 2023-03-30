@@ -11,4 +11,5 @@ jobs:
           ref: main
       - name: Sync submodule
         run: |
+          git pull origin submodule
           git subtree push --prefix="Packages/" origin submodule
