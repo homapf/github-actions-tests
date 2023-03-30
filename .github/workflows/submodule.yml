@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+        with:
+          ssh-key: ${{secrets.SSH}}
       - name: Sync submodule
         uses: s0/git-publish-subdir-action@develop
         env:
