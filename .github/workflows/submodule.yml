@@ -6,10 +6,11 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: main
+      - uses: actions/checkout@master
       - name: Sync submodule
-        run: |
-          git fetch origin submodule
-          git subtree push --prefix="Packages/" origin submodule
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: submodule
+          FOLDER: Packages/
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
