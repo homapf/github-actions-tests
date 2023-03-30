@@ -9,4 +9,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Sync submodule
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git subtree push --rejoin --prefix="Packages/" origin submodule-core
