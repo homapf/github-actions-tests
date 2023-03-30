@@ -7,12 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-        with:
-          ssh-key: ${{secrets.SSH}}
       - name: Sync submodule
         run: |
-          git remote rm origin
-          git remote add origin "https://github.com/homapf/github-actions-tests.git"
-          git config --global user.name "Admin"
-          git config --global user.email "pf@homagames.com"
-          git subtree push --prefix="Packages/" origin submodule
+          git subtree split -P "Packages/" -b submodule
+          git push origin submodule --force
