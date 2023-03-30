@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v3
       - name: Sync submodule
         run: |
-          git subtree push -f --prefix="Packages/" origin submodule-core
+          git subtree push --rejoin --prefix="Packages/" origin submodule-core
