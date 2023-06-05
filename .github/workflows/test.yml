@@ -4,7 +4,15 @@ on: [pull_request]
 
 jobs:
   tests:
-    uses: homagames/unity-ci-environment/.github/workflows/run-tests.yml@master
-    secrets: inherit
-    with:
-      testPlatform: "Android"
+    name: Testing package ${{ github.event.repository.name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running tests
+        uses: homapf/unity-test-runner@main
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: "Android"
