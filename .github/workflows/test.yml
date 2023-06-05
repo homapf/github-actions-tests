@@ -7,6 +7,14 @@ jobs:
     name: Testing package ${{ github.event.repository.name }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout unity empty project
+        uses: actions/checkout@v3
+        with:
+          repository: homagames/unity-ci-environment
+      - name: Checkout bare package
+        uses: actions/checkout@v3
+        with:
+          path: Packages/${{ github.event.repository.name }}
       - name: Running tests
         uses: homapf/unity-test-runner@main
         env:
@@ -15,3 +23,4 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: "Android"
