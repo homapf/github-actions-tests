@@ -15,4 +15,3 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          testMode: "Android"
