@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   tests:
-    name: Testing package ${{ github.event.repository.name }}
+    name: Testing package
     runs-on: ubuntu-latest
     steps:
       - name: Running tests
