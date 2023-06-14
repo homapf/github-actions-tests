@@ -4,23 +4,11 @@ on: [pull_request]
 
 jobs:
   tests:
-    name: Testing package ${{ github.event.repository.name }}
-    runs-on: self-hosted
+    name: Test
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout unity empty project
+      - name: Clone shared workflow
         uses: actions/checkout@v3
         with:
-          repository: homagames/unity-ci-environment
-      - name: Checkout bare package
-        uses: actions/checkout@v3
-        with:
-          path: Packages/${{ github.event.repository.name }}
-      - name: Running tests
-        uses: homapf/unity-test-runner@main
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          testMode: "Android"
+          repository: homapf/shared-workflows
+          path: .github/workflows/shared-workflow
