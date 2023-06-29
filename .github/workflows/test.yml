@@ -22,3 +22,4 @@ jobs:
           allowDirtyBuild: true
           buildName: test
           buildsPath: Build
+          quit: false
