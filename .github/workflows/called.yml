@@ -1,7 +1,7 @@
 name: Test Matrix
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       platform-matrix:
         description: 'Test platform matrix'
