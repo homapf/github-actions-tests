@@ -6,4 +6,4 @@ jobs:
   build:
     uses: ./.github/workflows/called.yml
     with:
-      platform-matrix: '[ "macOS", "iOS" ]'
+      platform-matrix: '[ "macOS", "iOS", "Something else" ]'
