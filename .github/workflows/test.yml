@@ -5,5 +5,3 @@ on: pull_request
 jobs:
   build:
     uses: ./.github/workflows/called.yml
-    with:
-      platform-matrix: '[ "macOS", "iOS", "tvOS", "watchOS" ]'
