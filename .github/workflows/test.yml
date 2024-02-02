@@ -4,9 +4,6 @@ on: pull_request
 
 jobs:
   build:
-    runs-on: [ubuntu-latest]
-    steps:
-      - name: Call
-        uses: ./.github/workflows/called.yml
-        with:
-          platform-matrix: '[ "macOS", "iOS", "tvOS", "watchOS" ]'
+    uses: ./.github/workflows/called.yml
+    with:
+      platform-matrix: '[ "macOS", "iOS", "tvOS", "watchOS" ]'
