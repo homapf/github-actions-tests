@@ -1,25 +1,18 @@
-name: Build without quit command test
+name: Test
 
-on: [pull_request]
+on:
+  workflow_dispatch:
+    inputs:
+      some-input:
+        description: "String input"
+        required: true
+        type: string
 
 jobs:
   build:
     runs-on: [ubuntu-latest]
     steps:
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      # Build
-      - name: Build project
-        uses: homagames/unity-builder@homapf/optional-quit-command
-        env:
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      - name: Call
+        uses: ./.github/workflows/called.yml
         with:
-          targetPlatform: Android
-          versioning: Semantic
-          allowDirtyBuild: true
-          buildName: test
-          buildsPath: Build
-          quit: true
+          platform-matrix: '[ "macOS", "iOS", "tvOS", "watchOS" ]'

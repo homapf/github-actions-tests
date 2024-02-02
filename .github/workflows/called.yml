@@ -1,0 +1,24 @@
+name: Test Matrix
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform-matrix:
+        description: 'Test platform matrix'
+        default: '[ "macOS", "iOS", "tvOS", "watchOS" ]'
+        required: true
+        type: string
+
+jobs:
+  test:
+    name: Test for ${{ matrix.targetPlatform }}
+    runs-on: [self-hosted,nightly-mac]
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        targetPlatform: ${{ fromJson(github.event.inputs.platform-matrix) }}
+    steps:
+      - name: Log test platform
+        run: |
+          echo "Test platform: ${{ matrix.targetPlatform }}"
