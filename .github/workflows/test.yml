@@ -1,12 +1,6 @@
 name: Test
 
-on:
-  workflow_dispatch:
-    inputs:
-      some-input:
-        description: "String input"
-        required: true
-        type: string
+on: pull_request
 
 jobs:
   build:
