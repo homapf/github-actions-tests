@@ -17,7 +17,7 @@ jobs:
       fail-fast: true
       max-parallel: 1
       matrix:
-        targetPlatform: ${{ fromJson(github.event.inputs.platform-matrix) }}
+        targetPlatform: ${{ fromJson(inputs.platform-matrix) }}
     steps:
       - name: Log test platform
         run: |
