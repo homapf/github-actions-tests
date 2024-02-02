@@ -12,7 +12,7 @@ on:
 jobs:
   test:
     name: Test for ${{ matrix.targetPlatform }}
-    runs-on: [self-hosted,nightly-mac]
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: true
       max-parallel: 1
