@@ -1,14 +1,19 @@
-name: Test package
-
-on: [push]
+name: Dispatch Tests
+on:
+  workflow_dispatch:
+    inputs:
+      json:
+        description: 'JSON input'
+        required: true
+        default: '{}'
+        
+run-name: ${{ fromJson(inputs.json).run-name }}
 
 jobs:
-  tests:
+  main-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 0
-      - name: Sync submodule
+      - name: Prints input
+        shell: bash
         run: |
-          git subtree push --prefix="Packages/" origin submodule
+          echo "Run name: ${{fromJson(inputs.json).run-name}}"
