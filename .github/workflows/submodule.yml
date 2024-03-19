@@ -16,4 +16,4 @@ jobs:
       - name: Prints input
         shell: bash
         run: |
-          echo "Run name: ${{fromJson(inputs.json).run-name}}"
+          echo "Run name: ${{fromJson(inputs.json).huge-field}}"
