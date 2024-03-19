@@ -17,3 +17,4 @@ jobs:
         shell: bash
         run: |
           echo "Run name: ${{fromJson(inputs.json).huge-field}}"
+          echo "All: ${{fromJson(inputs.json)}}"
