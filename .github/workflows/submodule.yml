@@ -2,13 +2,15 @@ name: Dispatch Tests
 on:
   workflow_dispatch:
     inputs:
-      json:
-        description: 'JSON input'
+      one:
+        description: 'One'
         required: true
-        default: '{}'
+        default: 'true'
+      two:
+        description: 'Two'
+        required: true
+        default: 'Release'
         
-run-name: ${{ fromJson(inputs.json).run-name }}
-
 jobs:
   main-job:
     runs-on: ubuntu-latest
@@ -16,5 +18,4 @@ jobs:
       - name: Prints input
         shell: bash
         run: |
-          echo "Run name: ${{fromJson(inputs.json).huge-field}}"
-          echo "All: ${{fromJson(inputs.json)}}"
+          echo "Test: ${{(inputs.one == 'true' || inputs.two == 'Release') && '.aab' || '.apk'}}
