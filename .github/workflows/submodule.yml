@@ -5,7 +5,8 @@ on:
       one:
         description: 'One'
         required: true
-        default: 'true'
+        default: true
+        type: boolean
       two:
         description: 'Two'
         required: true
