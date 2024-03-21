@@ -18,4 +18,4 @@ jobs:
       - name: Prints input
         shell: bash
         run: |
-          echo "Test: ${{(inputs.one == 'true' || inputs.two == 'Release') && '.aab' || '.apk'}}
+          echo "Test: ${{(inputs.one == 'true' || inputs.two == 'Release') && '.aab' || '.apk'}}"
