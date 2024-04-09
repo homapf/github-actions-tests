@@ -28,10 +28,8 @@ jobs:
         with:
           name: project
           path: |
-            /**/*.sln
-            /**/*.csproj
-            /**/*.asmdef
-            /*.sln
+            *.sln
+            *.csproj
       - name: Inspect code
         uses: muno92/resharper_inspectcode@v1
         with:
