@@ -2,3 +2,6 @@ Library
 Logs
 UserSettings
 .DS_Store
+*.sln
+*.csproj
+Temp
