@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: project
-          path: '**/*.sln'
+          path: ./
       - name: Inspect code
         uses: muno92/resharper_inspectcode@v1
         with:
