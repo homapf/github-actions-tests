@@ -1,22 +1,24 @@
-name: Dispatch Tests
-on:
-  workflow_dispatch:
-    inputs:
-      one:
-        description: 'One'
-        required: true
-        default: true
-        type: boolean
-      two:
-        description: 'Two'
-        required: true
-        default: 'Release'
-        
+on: [push]
+
 jobs:
-  main-job:
-    runs-on: ubuntu-latest
+  inspection:
+    runs-on: ubuntu-latest # or macos-latest, windows-latest
+    name: Inspection
     steps:
-      - name: Prints input
-        shell: bash
-        run: |
-          echo "Test: ${{(inputs.one == true || inputs.two == 'Release') && '.aab' || '.apk'}}"
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Solution generation
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          targetPlatform: Android
+          versioning: None
+          buildMethod: "UnityEditor.EditorApplication.Step"
+          manualExit: false
+      - name: Inspect code
+        uses: muno92/resharper_inspectcode@v1
+        with:
+          solutionPath: ./${{ github.event.repository.name }}.sln
