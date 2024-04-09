@@ -31,4 +31,4 @@ jobs:
       - name: Inspect code
         uses: muno92/resharper_inspectcode@v1
         with:
-          solutionPath: ./${{ github.event.repository.name }}.sln
+          solutionPath: ./workspace.sln
