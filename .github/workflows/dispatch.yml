@@ -24,4 +24,4 @@ jobs:
       - name: Prints input
         shell: bash
         run: |
-          echo Build/${{ inputs.one }}/${{ inputs.two }}${{inputs.one == 'iOS' && '' || inputs.three }}
+          echo Build/${{ inputs.one }}/${{ inputs.two }}${{ inputs.one == 'iOS' && '' || inputs.three }}
