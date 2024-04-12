@@ -1,0 +1,27 @@
+
+name: Dispatch Tests
+on:
+  workflow_dispatch:
+    inputs:
+      one:
+        description: 'One'
+        required: true
+        default: 'iOS'
+        type: string
+      two:
+        description: 'Two'
+        required: true
+        default: 'project-build'
+      three:
+        description: 'Three'
+        required: true
+        default: 'project-build'
+        
+jobs:
+  main-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prints input
+        shell: bash
+        run: |
+          echo Build/${{ inputs.one }}/${{inputs.one == 'iOS' && 'project-build' || format('{0}{1}',inputs.two,inputs.three) }}
