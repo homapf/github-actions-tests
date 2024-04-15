@@ -21,8 +21,12 @@ jobs:
         with:
           targetPlatform: Android
           versioning: None
-          buildMethod: "Unity.CodeEditor.CurrentEditor.SyncAll"
+          buildMethod: "Packages.Rider.Editor.RiderScriptEditor.SyncSolution"
           manualExit: false
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
       - name: Upload project
         uses: actions/upload-artifact@v4
         with:
@@ -32,4 +36,3 @@ jobs:
         uses: muno92/resharper_inspectcode@v1
         with:
           solutionPath: ./workspace.sln
-          dotnetVersion: 4.0
