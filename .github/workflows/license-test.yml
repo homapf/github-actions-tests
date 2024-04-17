@@ -94,7 +94,7 @@ jobs:
       #          Build          #
       ###########################
       - name: Build
-        uses: ./
+        uses: game-ci/unity-builder@v4
         id: build-1
         continue-on-error: true
         env:
