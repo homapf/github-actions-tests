@@ -37,17 +37,12 @@ jobs:
             buildWithIl2cpp: false
           # No dedicated server support
           - targetPlatform: WebGL
-            additionalParameters: -standaloneBuildSubtarget Server
           - targetPlatform: Android
-            additionalParameters: -standaloneBuildSubtarget Server
           - targetPlatform: iOS
-            additionalParameters: -standaloneBuildSubtarget Server
           # No dedicated server support on Linux Host
           - targetPlatform: StandaloneOSX
-            additionalParameters: -standaloneBuildSubtarget Server
           # No il2cpp dedicated server support on Linux Host
           - targetPlatform: StandaloneWindows64
-            additionalParameters: -standaloneBuildSubtarget Server
             buildWithIl2cpp: true
 
     steps:
