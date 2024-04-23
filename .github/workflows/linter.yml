@@ -23,6 +23,7 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: Android
+          unityVersion: 2022.3.24f1
           versioning: None
           buildMethod: "Packages.Rider.Editor.RiderScriptEditor.SyncSolution"
           manualExit: false
@@ -30,7 +31,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 7.0.x
 
       - run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
