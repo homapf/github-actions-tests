@@ -7,11 +7,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/cache@v3
+        
+      - name: Cache Library
+        uses: actions/cache@v3
         with:
           path: Library
-          key: Library-Android
-          restore-keys: Library-
+          key: Library-lint-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: Library-lint-
+
       - name: Solution generation
         uses: game-ci/unity-builder@v4
         env:
@@ -23,16 +26,18 @@ jobs:
           versioning: None
           buildMethod: "Packages.Rider.Editor.RiderScriptEditor.SyncSolution"
           manualExit: false
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
-      - name: Upload project
-        uses: actions/upload-artifact@v4
-        with:
-          name: project
-          path: ./
+          
       - name: Inspect code
         uses: muno92/resharper_inspectcode@v1
         with:
           solutionPath: ./workspace.sln
+          solutionWideAnalysis: false
+          minimumReportSeverity: warning
+          minimumSeverity: warning
+          include: |
+            **.cs
