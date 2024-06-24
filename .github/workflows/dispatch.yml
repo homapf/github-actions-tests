@@ -3,19 +3,9 @@ name: Dispatch Tests
 on:
   workflow_dispatch:
     inputs:
-      one:
-        description: 'One'
+      json:
         required: true
-        default: 'iOS'
         type: string
-      two:
-        description: 'Two'
-        required: true
-        default: 'project-build'
-      three:
-        description: 'Three'
-        required: true
-        default: 'project-build'
         
 jobs:
   main-job:
@@ -24,4 +14,4 @@ jobs:
       - name: Prints input
         shell: bash
         run: |
-          echo Build/${{ inputs.one }}/${{ inputs.two }}${{ inputs.one == 'Android' && inputs.three || '' }}
+          echo ${{ fromJson(inputs.json).development-mode == null && false || fromJson(inputs.json).development-mode }}
