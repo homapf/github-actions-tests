@@ -18,4 +18,4 @@ jobs:
           echo ${{ fromJson(inputs.json).development-mode }}
           echo ${{ (fromJson(inputs.json).development-mode == null) && 'false' || fromJson(inputs.json).development-mode }}
           echo ${{ (fromJson(inputs.json).development-mode == null) && false || fromJson(inputs.json).development-mode }}
-          echo ${{ fromJson(inputs.json).development-mode == null && 'false' || fromJson(inputs.json).development-mode }}
+          echo ${{ fromJson(inputs.json).development-mode != null && fromJson(inputs.json).development-mode }}
