@@ -17,3 +17,5 @@ jobs:
           echo ${{ fromJson(inputs.json).development-mode == null }}
           echo ${{ fromJson(inputs.json).development-mode }}
           echo ${{ (fromJson(inputs.json).development-mode == null) && 'false' || fromJson(inputs.json).development-mode }}
+          echo ${{ (fromJson(inputs.json).development-mode == null) && false || fromJson(inputs.json).development-mode }}
+          echo ${{ fromJson(inputs.json).development-mode == null && 'false' || fromJson(inputs.json).development-mode }}
