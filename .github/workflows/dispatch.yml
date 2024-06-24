@@ -15,4 +15,4 @@ jobs:
         shell: bash
         run: |
           echo ${{ fromJson(inputs.json).development-mode != null && fromJson(inputs.json).development-mode }}
-          ${{ fromJson(inputs.json).rollout-percentage == null && 0.5 || fromJson(inputs.json).rollout-percentage }}
+          echo ${{ fromJson(inputs.json).rollout-percentage == null && 0.5 || fromJson(inputs.json).rollout-percentage }}
