@@ -14,8 +14,4 @@ jobs:
       - name: Prints input
         shell: bash
         run: |
-          echo ${{ fromJson(inputs.json).development-mode == null }}
-          echo ${{ fromJson(inputs.json).development-mode }}
-          echo ${{ (fromJson(inputs.json).development-mode == null) && 'false' || fromJson(inputs.json).development-mode }}
-          echo ${{ (fromJson(inputs.json).development-mode == null) && false || fromJson(inputs.json).development-mode }}
           echo ${{ fromJson(inputs.json).development-mode != null && fromJson(inputs.json).development-mode }}
