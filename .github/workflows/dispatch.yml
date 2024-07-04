@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           echo "Step 1"
-          exit 1
+          exit 0
       - name: Sleep for Retry
         if: ${{ steps.step1.outcome == 'failure' }}
         run: |
