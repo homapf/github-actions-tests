@@ -23,6 +23,7 @@ jobs:
         run: |
           sleep 60
       - name: Step 2
+        if: ${{ steps.step1.outcome == 'failure' }}
         id: step2
         shell: bash
         run: |
