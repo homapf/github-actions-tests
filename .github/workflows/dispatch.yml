@@ -27,3 +27,4 @@ jobs:
         shell: bash
         run: |
           echo "Step 2"
+          exit 1
