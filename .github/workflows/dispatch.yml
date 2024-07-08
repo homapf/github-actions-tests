@@ -3,29 +3,16 @@ name: Dispatch Tests
 on:
   workflow_dispatch:
     inputs:
-      json:
+      test:
         required: true
-        type: string
+        type: boolean
         
 jobs:
   main-job:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
-        id: step1
-        continue-on-error: true
+        if: ${{ inputs.test }}
         shell: bash
         run: |
           echo "Step 1"
-          exit 0
-      - name: Sleep for Retry
-        if: ${{ steps.step1.outcome == 'failure' }}
-        run: |
-          sleep 60
-      - name: Step 2
-        if: ${{ steps.step1.outcome == 'failure' }}
-        id: step2
-        shell: bash
-        run: |
-          echo "Step 2"
-          exit 1
