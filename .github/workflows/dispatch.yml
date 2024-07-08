@@ -5,7 +5,7 @@ on:
     inputs:
       test:
         required: true
-        type: boolean
+        type: string
         
 jobs:
   main-job:
