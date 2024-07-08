@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
-        if: ${{ inputs.test }}
+        if: inputs.test == 'true'
         shell: bash
         run: |
           echo "Step 1"
