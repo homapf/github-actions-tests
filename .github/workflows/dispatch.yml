@@ -2,17 +2,12 @@
 name: Dispatch Tests
 on:
   workflow_dispatch:
-    inputs:
-      test:
-        required: true
-        type: string
         
 jobs:
   main-job:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
-        if: inputs.test == 'true'
         shell: bash
         run: |
           gh run view ${{ github.run_id }}
