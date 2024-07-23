@@ -15,4 +15,4 @@ jobs:
         if: inputs.test == 'true'
         shell: bash
         run: |
-          echo "Step 1"
+          gh run view ${{ github.run_id }}
