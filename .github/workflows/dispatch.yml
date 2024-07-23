@@ -20,4 +20,5 @@ jobs:
       - name: Step 2
         shell: bash
         run: |
-          gh run view ${{ github.run_id }} --repo ${{ github.repository }} --json jobs
+          id=$(gh run view ${{ github.run_id }} --repo ${{ github.repository }} --json jobs --jq '.jobs[] | select(.name == "main-job") | .databaseId')
+          echo "Job ID: $id"
