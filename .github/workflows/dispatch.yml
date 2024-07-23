@@ -12,4 +12,4 @@ jobs:
       - name: Step 1
         shell: bash
         run: |
-          gh run view ${{ github.run_id }}
+          gh run view ${{ github.run_id }} --repo ${{ github.repository }}
