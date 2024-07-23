@@ -4,12 +4,20 @@ on:
   workflow_dispatch:
         
 jobs:
-  main-job:
+  first-job:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Step 1
         shell: bash
         run: |
-          gh run view ${{ github.run_id }} --repo ${{ github.repository }} --log
+          echo "Hello World"
+  main-job:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    needs: first-job
+    steps:
+      - name: Step 2
+        shell: bash
+        run: |
+          gh run view ${{ github.run_id }} --repo ${{ github.repository }} --log-failed
