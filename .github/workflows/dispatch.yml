@@ -22,7 +22,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     needs: first-job
-    if: always()
+    if: always() && needs.first-job.result != 'failure'
     steps:
       - name: Step 2
         shell: bash
