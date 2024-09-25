@@ -2,10 +2,16 @@
 name: Dispatch Tests
 on:
   workflow_dispatch:
+    inputs:
+      run_first_job:
+        description: 'Run the first job'
+        required: false
+        default: 'false'
         
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.run_first_job == 'true' }}
     steps:
       - name: Step 1
         shell: bash
@@ -20,6 +26,4 @@ jobs:
       - name: Step 2
         shell: bash
         run: |
-          id=$(gh run view ${{ github.run_id }} --repo ${{ github.repository }} --json jobs --jq '.jobs[] | select(.name == "first-job") | .databaseId')
-          echo "Job ID: $id"
-          gh run view --log --job $id --repo ${{ github.repository }}
+          echo "Hello World 2"
