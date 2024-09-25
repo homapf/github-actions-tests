@@ -17,6 +17,7 @@ jobs:
         shell: bash
         run: |
           echo "Hello World"
+          exit 1
   main-job:
     runs-on: ubuntu-latest
     env:
