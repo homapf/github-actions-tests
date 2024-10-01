@@ -24,6 +24,14 @@ on:
         options:
           - 'Android'
           - 'iOS'
+      track:
+        description: 'Track'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - 'production'
+          - 'internal'
         
 jobs:
   main-job:
@@ -32,4 +40,4 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          echo ${{ ( inputs.platform == 'Android' && inputs.build-type == 'Release' ) && 'false' || inputs.development-mode }}
+          echo ${{ ( (inputs.platform == 'Android' && inputs.build-type == 'Release') || (inputs.platform == 'iOS' && inputs.track == 'production' ) ) && 'false' || inputs.development-mode }}
