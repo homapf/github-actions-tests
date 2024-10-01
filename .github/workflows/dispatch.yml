@@ -3,29 +3,25 @@ name: Dispatch Tests
 on:
   workflow_dispatch:
     inputs:
-      run_first_job:
-        description: 'Run the first job'
-        required: false
-        default: 'false'
+      development-mode:
+        description: 'Development mode'
+        required: true
+        default: false
+        type: boolean
+      build-type:
+        description: 'Build type'
+        required: true
+        default: 'Release'
+        type: choice
+        options:
+          - 'Release'
+          - 'Development'
         
 jobs:
-  first-job:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.run_first_job == 'true' }}
-    steps:
-      - name: Step 1
-        shell: bash
-        run: |
-          echo "Hello World"
-          exit 1
   main-job:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
-    needs: first-job
-    if: always() && needs.first-job.result != 'failure'
     steps:
-      - name: Step 2
+      - name: Test
         shell: bash
         run: |
-          echo "Hello World 2"
+          echo ${{ (inputs.development-mode == true && inputs.build-type != 'Release') && 'true' || 'false' }}
