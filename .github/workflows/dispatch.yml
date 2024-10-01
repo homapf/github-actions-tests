@@ -16,6 +16,14 @@ on:
         options:
           - 'Release'
           - 'Development'
+      platform:
+        description: 'Platform'
+        required: true
+        default: 'Android'
+        type: choice
+        options:
+          - 'Android'
+          - 'iOS'
         
 jobs:
   main-job:
@@ -24,4 +32,4 @@ jobs:
       - name: Test
         shell: bash
         run: |
-          echo ${{ (inputs.development-mode == true && inputs.build-type != 'Release') && 'true' || 'false' }}
+          echo ${{ ( inputs.platform == 'Android' && inputs.build-type == 'Release' ) && 'false' || inputs.development-mode }}
