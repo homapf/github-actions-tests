@@ -23,7 +23,7 @@ jobs:
         
   second-job:
     runs-on: ubuntu-latest
-    if: ${{ !cancelled() }}
+    if: ${{ !cancelled() && needs.first-job.outputs.result != 'failure' }}
     needs: first-job
     steps:
       - name: Checkout
