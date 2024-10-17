@@ -23,18 +23,8 @@ jobs:
         
   second-job:
     runs-on: ubuntu-latest
+    if: !cancelled()
     needs: first-job
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Run second job
-        run: |
-          sleep 10 
-          echo "Second job"
-  
-  second-job-no-deps:
-    runs-on: ubuntu-latest
-    if: ${{ !inputs.should-run-first-job }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
