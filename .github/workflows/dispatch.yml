@@ -3,41 +3,31 @@ name: Dispatch Tests
 on:
   workflow_dispatch:
     inputs:
-      development-mode:
-        description: 'Development mode'
+      should-run-first-job:
+        description: 'Should run first job'
         required: true
-        default: false
+        default: true
         type: boolean
-      build-type:
-        description: 'Build type'
-        required: true
-        default: 'Release'
-        type: choice
-        options:
-          - 'Release'
-          - 'Development'
-      platform:
-        description: 'Platform'
-        required: true
-        default: 'Android'
-        type: choice
-        options:
-          - 'Android'
-          - 'iOS'
-      track:
-        description: 'Track'
-        required: true
-        default: 'production'
-        type: choice
-        options:
-          - 'production'
-          - 'internal'
         
 jobs:
-  main-job:
+  first-job:
     runs-on: ubuntu-latest
+    if: ${{ inputs.should-run-first-job }}
     steps:
-      - name: Test
-        shell: bash
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run first job
         run: |
-          echo ${{ ( (inputs.platform == 'Android' && inputs.build-type == 'Release') || (inputs.platform == 'iOS' && inputs.track == 'production' ) ) && 'false' || inputs.development-mode }}
+          sleep 10 
+          echo "First job"
+        
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run second job
+        run: |
+          sleep 10 
+          echo "Second job"
