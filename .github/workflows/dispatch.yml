@@ -1,34 +1,22 @@
 
-name: Dispatch Tests
+name: Run Unity
+
 on:
   workflow_dispatch:
-    inputs:
-      should-run-first-job:
-        description: 'Should run first job'
-        required: true
-        default: true
-        type: boolean
-        
+  
 jobs:
-  first-job:
+  inspection:
     runs-on: ubuntu-latest
-    if: ${{ inputs.should-run-first-job }}
+    container: unityci/editor:ubuntu-2022.3.24f1-linux-il2cpp-3
+
+    name: Inspection
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Run first job
-        run: |
-          sleep 10 
-          echo "First job"
-        
-  second-job:
-    runs-on: ubuntu-latest
-    if: ${{ !cancelled() && needs.first-job.outputs.result != 'failure' }}
-    needs: first-job
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Run second job
-        run: |
-          sleep 10 
-          echo "Second job"
+
+      - name: Run Unity
+        run: unity-editor -batchmode -nographics -logFile /dev/stdout -projectPath . -executeMethod Packages.Rider.Editor.RiderScriptEditor.SyncSolution -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.UNITY_PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }} -quit
+      
+      - name: Return License
+        if: always()
+        run: unity-editor -logFile /dev/stdout -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.UNITY_PASSWORD }} -quit -returnlicense
