@@ -8,8 +8,9 @@ jobs:
     strategy:
       matrix:
         unityVersion: [2022.3.24f1, 2021.3.40f1]
+        platform: [linux-il2cpp, android]
     runs-on: ubuntu-latest
-    container: unityci/editor:ubuntu-${{ matrix.unityVersion }}-linux-il2cpp-3
+    container: unityci/editor:ubuntu-${{ matrix.unityVersion }}-${{ matrix.platform }}-3
 
     name: Run Unity
     steps:
