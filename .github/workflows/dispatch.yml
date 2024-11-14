@@ -1,15 +1,17 @@
-
 name: Run Unity
 
 on:
   workflow_dispatch:
   
 jobs:
-  inspection:
+  run-unity:
+    strategy:
+      matrix:
+        unityVersion: [2022.3.24f1, 2021.3.40f1]
     runs-on: ubuntu-latest
-    container: unityci/editor:ubuntu-2022.3.24f1-linux-il2cpp-3
+    container: unityci/editor:ubuntu-${{ matrix.unityVersion }}-linux-il2cpp-3
 
-    name: Inspection
+    name: Run Unity
     steps:
       - name: Checkout
         uses: actions/checkout@v4
