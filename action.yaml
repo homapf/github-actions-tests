@@ -7,4 +7,4 @@ runs:
     - name: Test Nested
       shell: bash
       run: |
-        echo $TEST
+        echo Nested $TEST
