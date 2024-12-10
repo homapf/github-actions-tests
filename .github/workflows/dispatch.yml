@@ -9,13 +9,7 @@ jobs:
 
     name: Run Unity
     steps:
-      - name: Test1
+      - name: Test
         env:
           TEST: "Hello World"
-        shell: bash
-        run: |
-          echo $TEST
-      - name: Test2
-        shell: bash
-        run: |
-          echo $TEST
+        uses: ./

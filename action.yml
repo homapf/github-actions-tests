@@ -1,0 +1,10 @@
+name: Awesome Reusable action
+description: 'An awesome reusable action'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Test Nested
+      shell: bash
+      run: |
+        echo $TEST
