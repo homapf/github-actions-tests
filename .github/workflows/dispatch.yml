@@ -5,21 +5,17 @@ on:
   
 jobs:
   run-unity:
-    strategy:
-      matrix:
-        unityVersion: [2022.3.24f1, 2021.3.41f1]
-        platform: [linux-il2cpp, android]
     runs-on: ubuntu-latest
-    container: unityci/editor:ubuntu-${{ matrix.unityVersion }}-${{ matrix.platform }}-3
 
     name: Run Unity
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Run Unity
-        run: unity-editor -batchmode -nographics -logFile /dev/stdout -projectPath . -executeMethod Packages.Rider.Editor.RiderScriptEditor.SyncSolution -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.UNITY_PASSWORD }} -serial ${{ secrets.UNITY_SERIAL }} -quit
-      
-      - name: Return License
-        if: always()
-        run: unity-editor -logFile /dev/stdout -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.UNITY_PASSWORD }} -quit -returnlicense
+      - name: Test1
+        env:
+          TEST: "Hello World"
+        shell: bash
+        run: |
+          echo $TEST
+      - name: Test2
+        shell: bash
+        run: |
+          echo $TEST
