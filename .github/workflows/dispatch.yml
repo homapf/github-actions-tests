@@ -6,7 +6,7 @@ on:
       json-payload:
         description: 'Test'
         required: true
-        default: '{"android": {"build": "true"}}'
+        default: '{"android": {"build": "true"}, "common": {"version": "42"}}'
   
 jobs:
   run-unity:
@@ -17,5 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Test
-        shell: bash
-        run: echo ${{ fromJson(inputs.json-payload).android.build }}
+        uses: ./
+        with:
+          json-payload: ${{ fromJson(inputs.json-payload.build) }}
