@@ -6,7 +6,7 @@ on:
       json-payload:
         description: 'Test'
         required: true
-        default: '{"android": {"build": "true"}, "common": {"version": "42"}}'
+        default: '{ "build": { "android": { "version": 42 },"ios": { "version": 42 } } }'
   
 jobs:
   run-unity:
@@ -19,4 +19,4 @@ jobs:
       - name: Test
         uses: ./
         with:
-          json-payload: ${{ fromJson(inputs.json-payload.build) }}
+          json-payload: ${{ fromJson(inputs.json-payload).build }}
