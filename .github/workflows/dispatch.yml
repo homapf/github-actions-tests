@@ -2,6 +2,11 @@ name: Run Unity
 
 on:
   workflow_dispatch:
+    inputs:
+      json-payload:
+        description: 'Test'
+        required: true
+        default: '{"android": {"build": "true"}}'
   
 jobs:
   run-unity:
@@ -12,6 +17,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Test
-        env:
-          TEST: "Hello World"
-        uses: ./
+        shell: bash
+        run: echo ${{ fromJson(inputs.json-payload).android.build }}
