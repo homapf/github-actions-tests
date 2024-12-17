@@ -15,6 +15,7 @@ jobs:
         with:
           script: |
             const command = context.payload.comment.body.match(/\[generate-unity-project (.*)\]/)[1].split(' ')
+            console.log(command)
             core.setOutput('unity-version', command[2])
             core.setOutput('homa-belly-token', command[3])
     outputs:
