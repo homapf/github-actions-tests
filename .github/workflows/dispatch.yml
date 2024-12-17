@@ -1,22 +1,32 @@
-name: Run Unity
+name: Bot Tests
 
 on:
-  workflow_dispatch:
-    inputs:
-      json-payload:
-        description: 'Test'
-        required: true
-        default: '{ "build": { "android": { "version": 42 },"ios": { "version": 42 } } }'
-  
-jobs:
-  run-unity:
-    runs-on: ubuntu-latest
+  issue_comment:
+    types: [created,edited]
 
-    name: Run Unity
+jobs:
+  get-parameters:
+    if: contains(github.event.comment.body, '[generate-unity-project')
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Test
-        uses: ./
+      - name: Get parameters from comment command
+        id: get-parameters
+        uses: actions/github-script@v4
         with:
-          json-payload: ${{ fromJson(inputs.json-payload).build }}
+          script: |
+            const command = context.payload.comment.body.match(/\[generate-unity-project (.*)\]/)[1].split(' ')
+            return {
+              unity-version: command[2],
+              homa-belly-token: command[3]
+            }
+    outputs:
+      unity-version: ${{ steps.get-parameters.outputs.unity-version }}
+      homa-belly-token: ${{ steps.get-parameters.outputs.homa-belly-token }}
+  main-job:
+    needs: get-parameters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: |
+          echo "Running tests with unity version ${{ needs.get-parameters.outputs.unity-version }}"
+          echo "Running tests with homa belly token ${{ needs.get-parameters.outputs.homa-belly-token }}"
