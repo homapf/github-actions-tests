@@ -18,14 +18,11 @@ jobs:
             console.log(command)
             core.setOutput('unity-version', command[2])
             core.setOutput('homa-belly-token', command[3])
-    outputs:
-      unity-version: ${{ steps.get-parameters.outputs.unity-version }}
-      homa-belly-token: ${{ steps.get-parameters.outputs.homa-belly-token }}
   main-job:
     needs: get-parameters
     runs-on: ubuntu-latest
     steps:
       - name: Run tests
         run: |
-          echo "Running tests with unity version ${{ needs.get-parameters.outputs.unity-version }}"
-          echo "Running tests with homa belly token ${{ needs.get-parameters.outputs.homa-belly-token }}"
+          echo "Running tests with unity version ${{ needs.get-parameters.steps.get-parameters.outputs.unity-version }}"
+          echo "Running tests with homa belly token ${{ needs.get-parameters.steps.get-parameters.outputs.homa-belly-token }}"
