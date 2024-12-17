@@ -19,8 +19,13 @@ jobs:
           script: |
             const command = context.payload.comment.body.match(/\[generate-unity-project (.*)\]/)[1].split(' ')
             console.log(command)
-            core.setOutput('unity-version', command[2])
-            core.setOutput('homa-belly-token', command[3])
+            core.setOutput('unity-version', command[0])
+            core.setOutput('homa-belly-token', command[1])
+
+      - name: Check outputs
+        run: |
+          echo "Unity version: ${{ steps.get-parameters.outputs.unity-version }}"
+          echo "Homa Belly token: ${{ steps.get-parameters.outputs.homa-belly-token }}"
   main-job:
     needs: get-parameters
     runs-on: ubuntu-latest
