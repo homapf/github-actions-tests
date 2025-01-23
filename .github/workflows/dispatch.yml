@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Echo string
         run: |
+          echo ${{ toJson(needs.first.outputs.string) }}
+          echo "-----------------"
           cat <<EOF > data.json
           {
           "some_test": '${{ needs.first.outputs.string }}',
