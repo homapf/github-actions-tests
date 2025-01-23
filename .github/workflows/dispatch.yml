@@ -12,7 +12,9 @@ jobs:
       - name: Output multiline string
         id: output
         run: |
-          echo "string=${{ format('Hello\nWorld') }}" >> "$GITHUB_OUTPUT"
+          test='hello
+          world'
+          echo "string=$test" >> "$GITHUB_OUTPUT"
   test:
     runs-on: ubuntu-latest
     needs: first
