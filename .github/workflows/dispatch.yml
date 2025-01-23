@@ -22,4 +22,4 @@ jobs:
     needs: first
     steps:
       - name: Echo string
-        run: echo "${{ needs.first.outputs.string }}"
+        run: echo '${{ needs.first.outputs.string }}'
