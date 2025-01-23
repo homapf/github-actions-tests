@@ -22,4 +22,11 @@ jobs:
     needs: first
     steps:
       - name: Echo string
-        run: echo '${{ needs.first.outputs.string }}'
+        run: |
+          cat <<EOF > data.json
+          {
+          "some_test": '${{ needs.first.outputs.string }}',
+          }
+          EOF
+          echo "Generated data.json content:"
+          cat data.json
