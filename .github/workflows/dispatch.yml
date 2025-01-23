@@ -26,7 +26,7 @@ jobs:
           echo "-----------------"
           cat <<EOF > data.json
           {
-          "some_test": '${{ toJson(needs.first.outputs.string) }}',
+          "some_test": ${{ toJson(needs.first.outputs.string) }},
           }
           EOF
           echo "Generated data.json content:"
