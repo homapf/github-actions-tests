@@ -2,15 +2,20 @@ name: Bot Tests
 
 on:
   workflow_dispatch:
-    inputs:
-      string:
-        description: 'Test string'
-        required: true
-        default: 'Something'
 
 jobs:
+  first:
+    runs-on: ubuntu-latest
+    outputs:
+      string: ${{ steps.output.outputs.string }}
+    steps:
+      - name: Output multiline string
+        id: output
+        run: |
+          echo "string=${{ format('Hello\nWorld') }}" >> "$GITHUB_OUTPUT"
   test:
     runs-on: ubuntu-latest
+    needs: first
     steps:
       - name: Echo string
-        run: echo ${{ github.event.inputs.string }}
+        run: echo "${{ needs.first.outputs.string }}"
