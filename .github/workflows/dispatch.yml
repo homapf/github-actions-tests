@@ -2,32 +2,21 @@ name: Bot Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      build-aab:
+        description: 'Build AAB'
+        required: false
+        default: 'false'
+      is-deploy:
+        description: 'Is Deploy'
+        required: false
+        default: 'false'
 
 jobs:
   first:
     runs-on: ubuntu-latest
-    outputs:
-      string: ${{ steps.output.outputs.string }}
     steps:
       - name: Output multiline string
         id: output
         run: |
-          {
-            echo 'string<<EOF'
-            curl https://example.com
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-  test:
-    runs-on: ubuntu-latest
-    needs: first
-    steps:
-      - name: Echo string
-        run: |
-          echo "-----------------"
-          cat <<EOF > data.json
-          {
-          "some_test": ${{ toJson(needs.first.outputs.string) }},
-          }
-          EOF
-          echo "Generated data.json content:"
-          cat data.json
+          echo "${{ (inputs.build-aab == 'true' || inputs.is-deploy) && 'true' || 'false' }}"
