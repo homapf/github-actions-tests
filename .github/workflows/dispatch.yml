@@ -19,4 +19,4 @@ jobs:
       - name: Output multiline string
         id: output
         run: |
-          echo "${{ (inputs.build-aab == 'true' || inputs.is-deploy) && 'true' || 'false' }}"
+          echo "${{ (inputs.build-aab == 'true' || inputs.is-deploy == 'true') && 'true' || 'false' }}"
