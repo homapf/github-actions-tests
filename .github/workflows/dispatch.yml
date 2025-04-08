@@ -16,7 +16,6 @@ jobs:
   first:
     runs-on: ubuntu-latest
     steps:
-      - name: Output multiline string
-        id: output
-        run: |
-          echo "${{ (inputs.build-aab == 'true' || inputs.is-deploy == 'true') && 'true' || 'false' }}"
+      - name: Reusable action
+        uses: ./
+        
