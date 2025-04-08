@@ -10,6 +10,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
     - name: Build Test
       shell: bash
       run: |
