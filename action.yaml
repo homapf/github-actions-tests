@@ -14,5 +14,4 @@ runs:
       shell: bash
       run: |
         echo "Test : ${{ toJson(job) }}"
-        echo "Test : ${{ toJson(jobs) }}"
         echo "Test : ${{ toJson(inputs) }}"
