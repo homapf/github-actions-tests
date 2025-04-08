@@ -13,4 +13,4 @@ runs:
     - name: Build Test
       shell: bash
       run: |
-        echo "Test : ${{ toJson(context) }}"
+        echo "Test : ${{ toJson(job) }}"
