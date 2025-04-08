@@ -20,4 +20,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Reusable action
         uses: ./
+        with:
+          json-payload: ${{ toJson(inputs) }}
         
