@@ -13,5 +13,4 @@ runs:
     - name: Build Test
       shell: bash
       run: |
-        echo "Test : ${{ toJson(job) }}"
-        echo "Test : ${{ toJson(inputs) }}"
+        echo "Test : ${{ inputs }}"
