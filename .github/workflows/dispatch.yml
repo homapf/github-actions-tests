@@ -3,10 +3,6 @@ name: Bot Tests
 on:
   workflow_dispatch:
     inputs:
-      build-aab:
-        description: 'Build AAB'
-        required: false
-        default: 'false'
       is-deploy:
         description: 'Is Deploy'
         required: false
