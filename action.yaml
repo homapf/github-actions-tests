@@ -15,3 +15,4 @@ runs:
       run: |
         echo "Test : ${{ env.TEST }}"
         echo "Test : $TEST"
+        echo '${{ fromJson(inputs.json-payload).build-aab != null && fromJson(inputs.json-payload).build-aab || fromJson(inputs.json-payload).is-deploy != null && fromJson(inputs.json-payload).is-deploy }}'
