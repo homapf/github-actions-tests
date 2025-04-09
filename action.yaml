@@ -13,4 +13,5 @@ runs:
     - name: Build Test
       shell: bash
       run: |
-        echo "Test : ${{ inputs.json-payload }}"
+        echo "Test : ${{ env.TEST }}"
+        echo "Test : $TEST"
