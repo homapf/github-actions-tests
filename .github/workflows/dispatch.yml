@@ -16,7 +16,7 @@ jobs:
   first:
     runs-on: ubuntu-latest
     env:
-      TEST: Hello
+      TEST: ${{ toJson(inputs) }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
