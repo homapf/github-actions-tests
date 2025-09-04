@@ -1,23 +1,17 @@
-name: Bot Tests
+name: Unity Tests
 
 on:
   workflow_dispatch:
-    inputs:
-      is-deploy:
-        description: 'Is Deploy'
-        required: false
-        default: 'false'
 
 jobs:
-  first:
+  build:
     runs-on: ubuntu-latest
-    env:
-      TEST: ${{ toJson(inputs) }}
+    container:
+      image: unityci/editor:2021.3.0f1-linux-il2cpp
+      options: --ipc=host
+
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
-      - name: Reusable action
-        uses: ./
-        with:
-          json-payload: ${{ toJson(inputs) }}
-        
+      - uses: actions/checkout@v3
+
+      - name: Verify Unity version
+        run: unity-editor --version
