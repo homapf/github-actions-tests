@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: unityci/editor:2021.3.0f1-linux-il2cpp
+      image: unityci/editor:ubuntu-2021.3.42f1-android-3
       options: --ipc=host
 
     steps:
