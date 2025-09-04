@@ -1,18 +1,12 @@
-name: Build Test
-description: 'Build Test'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: unityci/editor:2021.3.0f1-linux-il2cpp
+      options: --ipc=host
 
-inputs:
-  json-payload:
-    description: 'Test'
-    required: false
-    default: ''
+    steps:
+      - uses: actions/checkout@v3
 
-runs:
-  using: 'composite'
-  steps:
-    - name: Build Test
-      shell: bash
-      run: |
-        echo "Test : ${{ env.TEST }}"
-        echo "Test : $TEST"
-        echo '${{ fromJson(inputs.json-payload).doesntexists.build-aab != null && fromJson(inputs.json-payload).build-aab || fromJson(inputs.json-payload).is-deploy != null && fromJson(inputs.json-payload).is-deploy }}'
+      - name: Verify Unity version
+        run: unity-editor --version
